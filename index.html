@@ -7,13 +7,27 @@
 </head>
 <body>
     <div class="mainPage">
-        <div class="header">message inside the header</div>
+        <dialog>
+            <div class="close"><button id="close-button">X</button></div>
+            <form class="group">
+                <label for="title">Title of the book:</label>
+                <input type="text" name="title" id="title" autofocus>
+                <label for="author">Author of the book:</label>
+                <input type="text" name="author" id="author">
+                <label for="pages">Number of pages:</label>
+                <input type="number" name="pages" id="pages">
+                <label for="confirm">Did you read the book?</label>
+                <input type="checkbox" name="confirm" id="confirm">
+                <button id="submit-button" type="submit">Submit</button>
+            </form>
+        </dialog>
+        <div class="header">
+            <button id="addBook">New book</button>
+        </div>
         <div class="content">
-            <div class="container">
-                <div class="card">Some message inside the card</div>
+            <div class="container"></div>
         </div>
-        </div>
-    <div class="footer">message inside the footer</div>
+        <p class="message"></p>
     </div>
     <script src="scripts.js"></script>
 </body>
