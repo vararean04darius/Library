@@ -2,12 +2,14 @@ let myLibrary = [];
 
 bookId = 0;
 
-function Book(title, author, pages, readFlag) {
-    this.title= title;
-    this.author = author
-    this.pages = pages
-    this.readFlag = readFlag
-    this.id = bookId++
+class Book{
+    constructor(title, author, pages, readFlag){
+        this.title= title;
+        this.author = author
+        this.pages = pages
+        this.readFlag = readFlag
+        this.id = bookId++
+    }
 }
 const addBook = document.getElementById("addBook");
 const container = document.getElementsByClassName("container")[0]
