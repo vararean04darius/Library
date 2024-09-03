@@ -5,6 +5,7 @@ body{
 .container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    animation: normal;
 }
 #addBook{
     background-color: rgb(31, 24, 92);
@@ -21,7 +22,7 @@ body{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
-.group{
+#group{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
@@ -42,17 +43,26 @@ body{
     font-weight: 800;
     outline: none;
 }
+
 input{
-    border:none;
-    border-radius: 20px;
-    height: 20px;
-    padding-left: 2%;
-    background-color: white;
+    appearance: none;
+
+  width: 100%;
+  border: 1px solid #333;
+  margin: 0;
+
+  font-family: inherit;
+  font-size: 90%;
+
+  box-sizing: border-box;
+}
+
+input[type = "checkbox"]{
+    appearance: auto;
     color: black;
-    text-align: center;
-    outline:none;
     margin: 3%;
 }
+
 #confirm{
     height: 25px;
     width: 25px;
@@ -140,3 +150,23 @@ dialog{
 .mainPage{
     display: grid;
 }
+
+.error {
+    width: 100%;
+    padding: 0;
+  
+    font-size: 80%;
+    color: white;
+    background-color: #900;
+    border-radius: 0 0 5px 5px;
+  
+    box-sizing: border-box;
+  }
+  .error.active {
+    padding: 0.3em;
+  }
+
+  input:invalid {
+    border-color: #900;
+    background-color: #fdd;
+  }

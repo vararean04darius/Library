@@ -9,15 +9,19 @@
     <div class="mainPage">
         <dialog>
             <div class="close"><button id="close-button">X</button></div>
-            <form class="group">
+            <form id="group" novalidate>
                 <label for="title">Title of the book:</label>
-                <input type="text" name="title" id="title" autofocus>
+                <input type="text" name="title" id="title" autofocus required>
+                <span class="error" aria-live="polite"></span>
                 <label for="author">Author of the book:</label>
-                <input type="text" name="author" id="author">
+                <input type="text" name="author" id="author" required>
+                <span class="error" aria-live="polite"></span>
                 <label for="pages">Number of pages:</label>
-                <input type="number" name="pages" id="pages">
+                <input type="number" name="pages" id="pages" required min="1">
+                <span class="error" aria-live="polite"></span>
                 <label for="confirm">Did you read the book?</label>
                 <input type="checkbox" name="confirm" id="confirm">
+                <span class="error" aria-live="polite"></span>
                 <button id="submit-button" type="submit">Submit</button>
             </form>
         </dialog>

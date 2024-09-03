@@ -15,25 +15,13 @@ const addBook = document.getElementById("addBook");
 const container = document.getElementsByClassName("container")[0]
 const modal = document.querySelector("dialog")
 const closeButton = document.getElementById("close-button")
-const submit = document.getElementById("submit-button")
 const title = document.getElementById("title")
 const author = document.getElementById("author")
 const pages = document.getElementById("pages")
 const check = document.getElementById("confirm")
 const mesaj = document.getElementsByClassName("message")[0]
-
-submit.addEventListener("click", function(e){
-    e.preventDefault();
-    lastTitle = title.value;
-    lastAuthor = author.value;
-    lastPagesNumbers = pages.value;
-    if(check.checked){
-        lastReadFlag = true
-    }else{
-        lastReadFlag = false;
-    }
-    addBookToLibrary(lastTitle, lastAuthor, lastPagesNumbers, lastReadFlag)
-})
+const form = document.getElementById("group")
+const submit = document.getElementById("submit-button")
 
 bike = new Book("Shimano", "some chinese guy", 57, true)
 myLibrary.push(bike)
@@ -55,6 +43,9 @@ myLibrary.push(kyle)
 reloadBooks()
 
 addBook.addEventListener('click', () => {
+    title.textContent = '';
+    author.textContent = '';
+    pages.textContent = '';
     modal.showModal()
 })
 
@@ -126,6 +117,87 @@ function addBookToLibrary(lastTitle, lastAuthor, lastPagesNumbers, lastReadFlag)
 }
 
 
-//Write a function that loops through the array and displays each book on the page. 
-//You can display them in some sort of table, or each on their own “card”. 
-//It might help for now to manually add a few books to your array so you can see the display.
+title.addEventListener("input", (event) => {
+    if(title.validity.valid) {
+        titleError.textContent = "";
+        titleError.className = "error";
+    } else {
+        showError();
+    }
+})
+
+author.addEventListener("input", (event) => {
+    if(author.validity.valid) {
+        authorError.textContent = "";
+        authorError.className = "error";
+    } else {
+        showError();
+    }
+})
+
+const pagesError = document.querySelector("#pages + span.error")
+
+pages.addEventListener("input", (event) => {
+    if(pages.validity.valid) {
+        pagesError.textContent = "";
+        pagesError.className = "error";
+    } else {
+        showError();
+    }
+})
+
+form.addEventListener("submit", (event) => {
+    if(!title.validity.valid) {
+        showError();
+        event.preventDefault();
+    }
+    if(!author.validity.valid) {
+        showError();
+        event.preventDefault();
+    }
+    if(!pages.validity.valid) {
+        showError();
+        event.preventDefault();
+    }
+    event.preventDefault();
+    lastTitle = title.value;
+    lastAuthor = author.value;
+    lastPagesNumbers = pages.value;
+    if(check.checked){
+        lastReadFlag = true
+    }else{
+        lastReadFlag = false;
+    }
+    addBookToLibrary(lastTitle, lastAuthor, lastPagesNumbers, lastReadFlag)
+    modal.close();
+})
+
+submit.addEventListener("click", (event) => {
+    if(!title.validity.valid) {
+        showError();
+        event.preventDefault();
+    }
+    if(!author.validity.valid) {
+        showError();
+        event.preventDefault();
+    }
+    if(!pages.validity.valid) {
+        showError();
+        event.preventDefault();
+    }
+})
+
+const titleError = document.querySelector("#title + span.error");
+const authorError = document.querySelector("#author + span.error")
+
+function showError() {
+    if(title.validity.valueMissing) {
+        titleError.textContent = "This should not be empty.";
+    }
+    if(author.validity.valueMissing) {
+        authorError.textContent = "This should not be empty.";
+    }
+    if(pages.validity.valueMissing) {
+        pagesError.textContent = "This should not be empty.";
+    }
+}
